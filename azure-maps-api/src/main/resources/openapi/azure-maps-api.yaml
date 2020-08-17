@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: Microsoft Azure Maps REST API
+  description: 'Microsoft Azure Maps OpenApi specification'
+  version: 3.0.0
+externalDocs:
+  description: Full documentation
+  url: https://docs.microsoft.com/en-us/rest/api/maps
+servers:
+  - url: https://atlas.microsoft.com/
+    description: Production URL
+paths:
+  /search/address/{format}?api-version=1.0&query={query}:
+    get:

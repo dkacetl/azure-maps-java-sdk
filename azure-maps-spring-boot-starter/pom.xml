@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.microsoft.azure.maps.sdk</groupId>
+		<artifactId>azure-maps-java-sdk</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.microsoft.azure.maps.sdk.spring</groupId>
+	<artifactId>azure-maps-spring-boot-starter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>azure-maps-spring-boot-starter</name>
+	<description>Azure Maps Spring boot starter</description>
+	<packaging>jar</packaging>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.microsoft.azure.maps.sdk</groupId>
+			<artifactId>azure-maps-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.github.joschi.jackson/jackson-datatype-threetenbp -->
+		<dependency>
+			<groupId>com.github.joschi.jackson</groupId>
+			<artifactId>jackson-datatype-threetenbp</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<generateApiDocumentation>false</generateApiDocumentation>
+							<inputSpec>${project.basedir}/../azure-maps-api/src/main/resources/openapi/azure-maps-api.yaml</inputSpec>
+							<skipValidateSpec>true</skipValidateSpec>
+							<generatorName>java</generatorName>
+							<apiPackage>com.microsoft.azure.maps.sdk.api.spring</apiPackage>
+							<modelPackage>com.microsoft.azure.maps.sdk.api.model</modelPackage>
+							<invokerPackage>com.microsoft.azure.maps.sdk.api.spring.invoker</invokerPackage>
+							<packageName>com.microsoft.azure.maps.sdk.api</packageName>
+							<generateModels>false</generateModels>
+							<library>resttemplate</library>
+							<generateModelTests>false</generateModelTests>
+							<generateApiTests>false</generateApiTests>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
