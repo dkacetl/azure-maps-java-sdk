@@ -31,6 +31,7 @@ public class AzureMapsConfiguration {
         ApiClient springApiClient = new ApiClient(restTemplate);
 
         springApiClient.setBasePath(azureMapsProperties.getUrl());
+        springApiClient.setApiKey(azureMapsProperties.getSubscriptionKey());
         return springApiClient;
     }
 }

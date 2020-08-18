@@ -15,10 +15,7 @@ public class CommandLineService implements CommandLineRunner {
     @Override
     public void run(String... args) {
         SearchAddressReverseResponse test = searchApi.searchAddressReverse(
-                "json",
-                args[0],
-                "1.0",
-                args[1]);
+                "json", "47.641268,-122.125679","1.0");
         System.out.println(test);
     }
 }

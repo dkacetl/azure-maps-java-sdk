@@ -24,13 +24,6 @@ paths:
           schema:
             type: string
           example: "json"
-        - name: subscription-key
-          in: query
-          description: Security token (key)
-          required: false
-          schema:
-            type: string
-          example: "asdfdgfsd_sdfsdf_sdfsdfdfs"
         - name: query
           in: query
           description: Query of
@@ -52,7 +45,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchAddressReverseResponse'
+
+security:
+  - subscriptionKeyScheme: []
+
 components:
+  securitySchemes:
+    subscriptionKeyScheme:
+      type: apiKey
+      in: query
+      name: subscription-key
+
   schemas:
     SearchAddressReverseResponse:
       type: object
