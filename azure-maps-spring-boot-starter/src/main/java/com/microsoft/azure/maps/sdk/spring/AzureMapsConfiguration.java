@@ -25,13 +25,21 @@ public class AzureMapsConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
+    public RotatingAzureGeocodingService rotatingAzureMapsService(@Autowired RestTemplateBuilder restTemplateBuilder)
+    {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        return new RotatingAzureGeocodingService(restTemplate, azureMapsProperties);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
     public ApiClient springApiClient(@Autowired RestTemplateBuilder restTemplateBuilder)
     {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ApiClient springApiClient = new ApiClient(restTemplate);
 
         springApiClient.setBasePath(azureMapsProperties.getUrl());
-        springApiClient.setApiKey(azureMapsProperties.getSubscriptionKey());
+        springApiClient.setApiKey(azureMapsProperties.getSubscriptionKey().get(0));
         return springApiClient;
     }
 }
