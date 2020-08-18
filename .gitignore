@@ -2,3 +2,7 @@
 /.idea/
 /azure-maps-java-sdk.iml
 /azure-maps-spring-boot-starter/azure-maps-spring-boot-starter.iml
+/azure-maps-api/target/
+/azure-maps-example/target/
+/azure-maps-example/azure-maps-example.iml
+/azure-maps-spring-boot-starter/target/
