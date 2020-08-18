@@ -73,6 +73,7 @@
 	<modules>
 		<module>azure-maps-api</module>
 		<module>azure-maps-spring-boot-starter</module>
-	</modules>
+        <module>azure-maps-example</module>
+    </modules>
 
 </project>

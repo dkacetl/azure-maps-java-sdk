@@ -10,5 +10,140 @@ servers:
   - url: https://atlas.microsoft.com/
     description: Production URL
 paths:
-  /search/address/{format}?api-version=1.0&query={query}:
+  /search/address/reverse/{format}:
     get:
+      operationId: search-address-reverse
+      description: "There may be times when you need to translate a coordinate (example: 37.786505, -122.3862) into a human understandable street address. Most often this is needed in tracking applications where you receive a GPS feed from the device or asset and wish to know what address where the coordinate is located. This endpoint will return address information for a given coordinate."
+      tags:
+        - Search
+      parameters:
+        - in: path
+          name: format
+          description: ID of invoice
+          required: true
+          schema:
+            type: string
+          example: "json"
+        - name: subscription-key
+          in: query
+          description: Security token (key)
+          required: false
+          schema:
+            type: string
+          example: "asdfdgfsd_sdfsdf_sdfsdfdfs"
+        - name: query
+          in: query
+          description: Query of
+          required: true
+          schema:
+            type: string
+          example: "47.641268,-122.125679"
+        - name: api-version
+          in: query
+          description: ID of invoice
+          required: true
+          schema:
+            type: string
+          example: "1.0"
+      responses:
+        200:
+          description: Response of
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchAddressReverseResponse'
+components:
+  schemas:
+    SearchAddressReverseResponse:
+      type: object
+      properties:
+        summary:
+          $ref: '#/components/schemas/SearchAddressReverseSummary'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchAddressReverseResult'
+
+    SearchAddressReverseResult:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/SearchResultAddress'
+        matchType:
+          type: string
+          description: Information on the type of match.
+        position:
+          type: string
+          description: "Position property in the form of {latitude},{longitude}"
+          example: "47.641758,-122.125870"
+
+    SearchAddressReverseSummary:
+      type: object
+      properties:
+        queryTime:
+          type: number
+          example: 5
+        numResults:
+          type: number
+          example: 1
+
+    SearchResultAddress:
+      description: The address of the result
+      type: object
+      properties:
+        buildingNumber:
+          type: string
+          description: Building Number property
+        country:
+          type: string
+          description: Country property
+        countryCodeISO3:
+          type: string
+          description: Country Code ISO3 property
+        countrySubdivision:
+          type: string
+          description: Country Secondary Subdivision property
+        countrySubdivisionName:
+          type: string
+          description: Country Subdivision Name property
+        countryTertiarySubdivision:
+          type: string
+          description: Country Tertiary Subdivision property
+        crossStreet:
+          type: string
+          description: Cross Street property
+        extendedPostalCode:
+          type: string
+          description: Extended Postal Code property
+        freeformAddress:
+          type: string
+          description: Free form Address property
+        localName:
+          type: string
+          description: An address component which represents the name of a geographic area or locality that groups a number of addressable objects for addressing purposes, without being an administrative unit. This field is used to build the freeformAddress property.
+        municipality:
+          type: string
+          description: Municipality property
+        municipalitySubdivision:
+          type: string
+          description: MunicipalitySubdivision property
+        postalCode:
+          type: string
+          description: Postal Code property
+        routeNumbers:
+          type: array
+          items:
+            type: number
+          description: Country property
+        street:
+          type: string
+          description: Street property
+        streetName:
+          type: string
+          description: Street Name property
+        streetNameAndNumber:
+          type: string
+          description: Street Name and Number property
+        streetNumber:
+          type: string
+          description: Street Number property
